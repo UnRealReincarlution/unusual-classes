@@ -15,11 +15,9 @@ class Player extends React.Component {
     }
 
     render() {
-        console.log(this.state.props);
-
         if(this.props.type == "small") {
             return (
-                <div className="player" onClick={this.handleClick}>
+                <div className="player" onClick={this.handleClick} key={this.props.props.b}>
                     <div>
                         <img src={this.state.props.a.image}></img>
                         
@@ -33,7 +31,7 @@ class Player extends React.Component {
             );
         }else {
             return (
-                <div className="player" onClick={this.handleClick}>
+                <div className="player" onClick={this.handleClick} key={this.props.props.b}>
                     <div>
                         <img src="./assets/giant_slayer.png"></img>
                         

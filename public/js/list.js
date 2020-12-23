@@ -18,7 +18,7 @@ class List extends React.Component {
                                 )
                             }else if(this.props.type == 'player' || this.props.type == 'characters'){
                                 return (
-                                    <Player props={el} key={el.id} type="small" />
+                                    <Player props={el} key={el.b} type="small" />
                                 )
                             }else {
                                 return (

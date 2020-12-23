@@ -47,8 +47,6 @@ ReactDOM.render(
     <div className="auth">
         <h1> {localStorage.getItem("login") ? "Login" : "Signup" } to Unusual Classes </h1>
 
-        <h2>Signup options</h2>
-
         <div>
             <div onClick ={googleSignin} className="signin">
                 <img src="./assets/google.svg"></img>

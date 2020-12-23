@@ -1177,3 +1177,60 @@ input[type="file"] {
 #image_image {
     margin-left: 10%;
 }
+
+.documentOutlineSlight {
+    background-color: rgba(var(--primary-crimson), 0.2);
+    color: rgba(var(--primary-crimson), 0.5);
+    box-sizing: border-box;
+    border-radius: 50px;
+
+    padding: 7px;
+
+    font-size: 15px;
+    font-family: 'Inter';
+    font-weight: 500;
+}
+
+.marginLess * {
+    margin: 0 !important;
+}
+
+.height50 {
+    height: 50%;
+}
+
+.height100 {
+    height: 100%;
+}
+
+.lightChildren * {
+    font-weight: 500;
+}
+
+.health {
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+h4.documentOutlineSlight {
+    width: 100%;
+    text-align: center;
+}
+
+h3.documentOutlineSlight {
+    width: 100%;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.lel {
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+.width100 {
+    width: 100%;
+}
