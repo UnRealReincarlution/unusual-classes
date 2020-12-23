@@ -22,3 +22,5 @@ app.get('/:adress', async function (req, res) {
 server.listen(port, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
+
+// UnRealReincarlution @ Github - 2020 comissioned for DNDGROUP (Lachie West & Co.)
