@@ -465,7 +465,10 @@ button:hover {
 }
 
 .player:hover {
+    cursor: pointer;
     background-color: rgba(var(--accent-tan-rgb), 0.2);
+    box-shadow: -7px 7px;
+    transform: translateX(7px) translateY(-7px);
 }
 
 .player img {
@@ -475,14 +478,18 @@ button:hover {
 
 .player p {
     font-size: 0.9em;
+    margin: 0;
+
+    text-transform: uppercase;
 }
 
 .player a {
     color: rgb(var(--dark-crimson));
     font-weight: 200;
-    text-transform: uppercase;
     font-size: 0.8em;
     letter-spacing: 2px;
+
+    text-transform: uppercase;
 }
 
 .player a:hover {
@@ -492,9 +499,10 @@ button:hover {
 
 .player h2 {
     margin: 0;
-    letter-spacing: 2px;
 
-    font-size: 1.2em;
+    font-size: 2em;
+    font-weight: normal;
+    font-family: "Wayfinder";
 }
 
 .player > div {
@@ -508,9 +516,6 @@ button:hover {
 }
 
 .player > div > div * {
-    margin: 5px;
-
-    text-align: center;
     width: 100%;
 }
 
@@ -829,7 +834,7 @@ button:hover {
 }
 
 .item_dynamic > div {
-    width: 40%;
+    width: 50%;
 }
 
 .item_dynamic > div p {
@@ -1199,6 +1204,10 @@ input[type="file"] {
     height: 50%;
 }
 
+.height30 {
+    height: 30%;
+}
+
 .height100 {
     height: 100%;
 }
@@ -1219,18 +1228,57 @@ h4.documentOutlineSlight {
     text-align: center;
 }
 
+h4.documentOutlineSlight:hover {
+    cursor: pointer;
+}
+
 h3.documentOutlineSlight {
     width: 100%;
     padding: 5px 10px;
     text-align: center;
+
+    width: fit-content;
+    border: 1px solid rgba(var(--primary-crimson), 0.1);
+    border-radius: 5px;
+}
+
+h3.documentOutlineSlight:hover {
+    border: 1px solid rgba(var(--primary-crimson), 0.5);
+    background-color: rgba(var(--primary-crimson), 0.25);
+    cursor: pointer;
 }
 
 .lel {
     justify-content: center;
     align-items: center;
-    height: 70%;
+    height: fit-content;
+
+    min-height: 70%;
 }
 
 .width100 {
     width: 100%;
+}
+
+.playerStatsDirect h3 { 
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.8em;
+
+    
+}
+
+.playerStatsDirect {
+    padding: 0px;
+    width: 80%;
+    font-weight: 400;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+}
+
+.primaryStat {
+
+    min-width: fit-content;
+    max-width: 20%;
 }

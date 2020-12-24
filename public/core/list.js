@@ -64,7 +64,7 @@ let renderDOM = (items) => {
                 </div>
                 
 
-                <div className="linear gapNormal paddingNormal full80">
+                <div className="linear gapNormal paddingNormal full">
                     <div className="vertical full">
                         <div className="linear center space_between">
                             <h2>All {_page_type.capitalize()}</h2>

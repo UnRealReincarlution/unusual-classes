@@ -42,3 +42,21 @@ firebase.firestore().enablePersistence()
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
+
+let rollDice = (x, y) => {
+    // ROLL Xdy
+    // Return Format {sum: 18, rolls: [1, 7, 2...]}
+
+    let ret = {
+        sum: 0,
+        rolls: []
+    } 
+
+    for(let i = 0; i < x; i++) {
+        let rand = Math.floor(Math.random() * y) + 1;
+        ret.sum += rand;
+        ret.rolls.push(rand);
+    }
+
+    return ret;
+}

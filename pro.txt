@@ -1,0 +1,11 @@
+# Tasks to Complete
+
+Character
+    - Complete Template
+    - Add Class System
+    ✔ Dynamic Loading
+    - Add Status Effects from Items
+    - Inventory Managment
+    ✔ ReDo Character Summary
+
+Campaign
