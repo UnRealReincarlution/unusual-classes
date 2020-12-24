@@ -1282,3 +1282,17 @@ h3.documentOutlineSlight:hover {
     min-width: fit-content;
     max-width: 20%;
 }
+
+.classModal {
+    height: 83%;
+    width: 96.8%;
+
+    padding: 15px;
+
+    position: absolute;
+    z-index: 880;
+
+    background-color: rgba(var(--primary-crimson), 0.1);
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}

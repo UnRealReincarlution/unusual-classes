@@ -7,15 +7,15 @@ function getDocument(callback, document_to_load) {
 }
 
 class PlayerPage extends React.Component {
+    
     constructor(props) {
         super(props);
 
         this.state = { props };
         this.state.props = this.state.props.props;
 
+        this.setState({ modalIsOpen: false, modalData: {} })
         this.showClassesModal = this.showClassesModal.bind(this);
-
-        let document_to_load = localStorage.getItem("renderCharacter");
     }
 
     componentDidMount() {
@@ -31,7 +31,7 @@ class PlayerPage extends React.Component {
     async getData(document_to_load) {
         try {
             const response = await db.doc(document_to_load).get();
-            this.setState({ data: response.data(), items: [] });
+            this.setState({ data: response.data(), items: [], modalIsOpen: false, modalData: {} });
         } catch (err) {
             return [];
         }
@@ -46,9 +46,15 @@ class PlayerPage extends React.Component {
             .get()
             .then(qs => {
                 qs.forEach(e => {
-                    console.log(e.data());
+                    this.setState({ modalIsOpen: true });
+                    this.setState({ modalData: e.data() });
+                    this.forceUpdate();
                 })
             });
+    }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
     }
 
     render() {
@@ -72,6 +78,8 @@ class PlayerPage extends React.Component {
 
             return (
                 <div className="item_page_dynamic">
+                    <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.data}/>
+                    
                     <div className="header_content item_dynamic height30">
                         <div className="lel vertical center box marginLess height30 gap15 item_dynamic">
                             <h1 style={ { fontSize: '4em', margin: '0' } } >{doc.name}</h1>
