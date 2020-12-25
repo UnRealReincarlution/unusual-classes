@@ -7,7 +7,6 @@ function getDocument(callback, document_to_load) {
 }
 
 class PlayerPage extends React.Component {
-    
     constructor(props) {
         super(props);
 
