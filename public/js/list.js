@@ -8,8 +8,6 @@ class List extends React.Component {
 
     render() {
         if(this.state.props) {
-            console.log(this);
-
             return (
                 <div style={{ gap: '15px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                     {

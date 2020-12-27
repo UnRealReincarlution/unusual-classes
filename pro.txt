@@ -1,15 +1,15 @@
 # Tasks to Complete
 
-Character
+[Character]
     - Complete Template
-    - Add Class System
+*   - Add Class System
     ✔ Dynamic Loading
     - Add Status Effects from Items
     - Inventory Managment
     ✔ Add Items to Character
     ✔ ReDo Character Summary
 
-Campaign
+[Campaign]
     Design
         - Character View
         - Maps and Art

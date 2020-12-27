@@ -551,7 +551,7 @@ button:hover {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .auth h1 {
@@ -940,6 +940,10 @@ button {
     padding: 35px;
 }
 
+.relativePage {
+    position: relative;
+}
+
 .item_page_dynamic h3 {
     letter-spacing: 5px;
 }
@@ -1187,8 +1191,8 @@ input[type="file"] {
 }
 
 .documentOutlineSlight {
-    background-color: rgba(var(--primary-crimson), 0.2);
-    color: rgba(var(--primary-crimson), 0.5);
+    background-color: rgba(237, 218, 195, .8);
+    color: rgba(var(--accent-tan-rgb), 1);
     box-sizing: border-box;
     border-radius: 50px;
 
@@ -1246,8 +1250,8 @@ h3.documentOutlineSlight {
 }
 
 h3.documentOutlineSlight:hover {
-    border: 1px solid rgba(var(--primary-crimson), 0.5);
-    background-color: rgba(var(--primary-crimson), 0.25);
+    border: 1px solid rgba(var(--accent-tan-rgb), 0.5);
+    background-color: rgba(var(--accent-tan-rgb), 0.25);
     cursor: pointer;
 }
 
@@ -1287,17 +1291,79 @@ h3.documentOutlineSlight:hover {
 }
 
 .classModal {
-    height: 83%;
-    width: 96.8%;
+    height: 87vh;
+    width: 100%;
 
-    padding: 15px;
-
+    padding: 2em;
     position: absolute;
+
     z-index: 880;
 
-    background-color: rgba(var(--primary-crimson), 0.1);
-    background-color: #f4f4f4;
+    background-color: rgba(237, 218, 195, .8);
+    backdrop-filter: blur(7px);
     border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.classModal .modalBody {
+    height: 100%;
+    width: 100%;
+
+    border-radius: 5px;
+    color: var(--accent-tan);
+
+    background-color: var(--font-primary);
+}
+
+.classModal h1 {
+    margin: 0;
+}
+
+.classModal .modalHeader {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 35px;
+}
+
+.closeButton {
+    position: absolute;
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+
+    top: -15px;
+    right: -15px;
+
+    border: 3px solid var(--accent-tan);
+    border-radius: 50%;
+
+    height: 30px;
+    width: 30px;
+
+    font-weight: 800;
+
+    color: var(--accent-tan);
+    background-color: #f4f4f4;
+}
+
+.closeButton p {
+    font-size: 1em;
+}
+
+.closeButton:hover {
+    background-color: #eddac3;
+    cursor: pointer;
 }
 
 #add_to_character {

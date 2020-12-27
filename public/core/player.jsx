@@ -14,6 +14,7 @@ class PlayerPage extends React.Component {
         this.state.props = this.state.props.props;
 
         this.showClassesModal = this.showClassesModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentDidMount() {
@@ -33,8 +34,6 @@ class PlayerPage extends React.Component {
 
             let arr = [...this.state.items];
             this.state.data.items.forEach(async value => {
-                console.log(this.state.data.items);
-                
                 await db.doc(value.path).get().then(e => {
                     arr.push(e.data());   
                 });
@@ -42,7 +41,6 @@ class PlayerPage extends React.Component {
                 this.setState({ items: arr });
                 this.forceUpdate();
             });
-
             
         } catch (err) {
             return [];
@@ -50,6 +48,8 @@ class PlayerPage extends React.Component {
     }
 
     showClassesModal() {
+        $("#content").css("overflow", "hidden");
+
         let string_val = localStorage.getItem("renderCharacter");
         let doc_loc = string_val.slice(0, string_val.search("players"));
         console.log(`(${doc_loc}classes) where name == ${this.state.data.class}`);
@@ -66,6 +66,7 @@ class PlayerPage extends React.Component {
     }
 
     closeModal() {
+        $("#content").css("overflow", "auto");
         this.setState({ modalIsOpen: false });
     }
 
@@ -81,15 +82,18 @@ class PlayerPage extends React.Component {
                 })
             }
 
+            let weight = 0;
+            this.state.items.forEach(e => weight += e.weight);
+
             this.state.items.map(e => { return { a: e, b: "" } })
 
             return (
-                <div className="item_page_dynamic">
-                    <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.data}/>
+                <div className="item_page_dynamic relativePage">
+                    <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.data} tree={this.state.modalData.tree}/>
                     
                     <div className="header_content item_dynamic height30">
                         <div className="lel vertical center box marginLess height30 gap15 item_dynamic">
-                            <h1 style={ { fontSize: '4em', margin: '0' } } >{doc.name}</h1>
+                            <h1 style={ { fontSize: '4em', margin: '0', overflow: 'hidden', textOverflow: 'elipsis', whiteSpace: 'nowrap' } } >{doc.name}</h1>
 
                             <div className="item_dynamic linear width100 playerStatsDirect" style={{ padding: '0px', width: '100%', fontWeight: '400' }}>
                                 <h3 style={{ fontWeight: '400' }}>Level {doc.level}</h3>
@@ -135,7 +139,7 @@ class PlayerPage extends React.Component {
                             <div className="vertical half1">
                                 <div className="linear center space_between">
                                     <h2>Equipment</h2>
-                                    <h3 style={ { fontWeight: '300', fontSize: '.8em' } }>{doc.equipment.current_size}kg / {doc.equipment.max_size + doc.equipment.max_adjustment}kg</h3>
+                                    <h3 style={ { fontWeight: '300', fontSize: '.8em' } }>{weight}kg / {doc.equipment.max_size + doc.equipment.max_adjustment}kg</h3>
                                     <a href="./list?v=items">ALL {'>'}</a>
                                 </div>
                                 
