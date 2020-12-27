@@ -5,6 +5,8 @@ class Player extends React.Component {
 
         this.state = { props };
         this.state.props = this.state.props.props;
+        console.log(this.state);
+        
         this.stringEnter = `Level: ${this.state.props.a.level} | ${this.state.props.a.race} | ${this.state.props.a.class}`;
 
         this.handleClick = this.handleClick.bind(this);
@@ -28,6 +30,8 @@ class Player extends React.Component {
     }
 
     render() {
+        console.log(this.state.props);
+
         if(this.props.type == "small") {
             return (
                 <div className="player" onClick={this.handleClick} key={this.props.props.b} onMouseEnter={this.hover} onMouseLeave={this.unhover}>

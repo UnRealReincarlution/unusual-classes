@@ -8,10 +8,12 @@ class List extends React.Component {
 
     render() {
         if(this.state.props) {
+            console.log(this);
+
             return (
                 <div style={{ gap: '15px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
                     {
-                        this.state.props.props.map(el => {
+                        this.props.props.map(el => {
                             if(this.props.type == 'campaign' || this.props.type == 'campaigns') {
                                 return (
                                     <Campaign props={el} key={el.id} type="large" />
@@ -19,6 +21,10 @@ class List extends React.Component {
                             }else if(this.props.type == 'player' || this.props.type == 'characters'){
                                 return (
                                     <Player props={el} key={el.b} type="small" />
+                                )
+                            }else if(this.props.type == "special_char") {
+                                return (
+                                    <Player props={{ a: el, b: "" }} key={el.b} type="small" />
                                 )
                             }else {
                                 return (

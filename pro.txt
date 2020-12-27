@@ -6,7 +6,7 @@ Character
     ✔ Dynamic Loading
     - Add Status Effects from Items
     - Inventory Managment
-    - *Add Items to Character
+    ✔ Add Items to Character
     ✔ ReDo Character Summary
 
 Campaign

@@ -115,6 +115,7 @@ h1 {
 
 .header_content {
     position: relative;
+    z-index: 1;
 }
 
 header > a:first-of-type {
@@ -449,6 +450,7 @@ button:hover {
 
 .player {
     width: 90%;
+    width: min-content;
     height: min-content;
     padding: 1em;
 
@@ -517,6 +519,7 @@ button:hover {
 
 .player > div > div * {
     width: 100%;
+    white-space: nowrap;
 }
 
 .player > div > div {
@@ -932,7 +935,7 @@ button {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 0;
 
     padding: 35px;
 }

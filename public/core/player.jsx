@@ -13,7 +13,6 @@ class PlayerPage extends React.Component {
         this.state = { props };
         this.state.props = this.state.props.props;
 
-        this.setState({ modalIsOpen: false, modalData: {} })
         this.showClassesModal = this.showClassesModal.bind(this);
     }
 
@@ -31,6 +30,20 @@ class PlayerPage extends React.Component {
         try {
             const response = await db.doc(document_to_load).get();
             this.setState({ data: response.data(), items: [], modalIsOpen: false, modalData: {} });
+
+            let arr = [...this.state.items];
+            this.state.data.items.forEach(async value => {
+                console.log(this.state.data.items);
+                
+                await db.doc(value.path).get().then(e => {
+                    arr.push(e.data());   
+                });
+
+                this.setState({ items: arr });
+                this.forceUpdate();
+            });
+
+            
         } catch (err) {
             return [];
         }
@@ -68,12 +81,7 @@ class PlayerPage extends React.Component {
                 })
             }
 
-            doc.items.forEach(async value => {
-                await db.doc(value.path).get().then(e => {
-                    let arr = this.state.items.push(e.data());
-                    this.setState({ items: arr });
-                });
-            });
+            this.state.items.map(e => { return { a: e, b: "" } })
 
             return (
                 <div className="item_page_dynamic">
@@ -105,7 +113,7 @@ class PlayerPage extends React.Component {
 
                             <div className="item_dynamic vertical center gap15" style={ { padding: '0px 25px 0px 25px', gap: '5px', marginRight: '15px' } }>
                                 <h4 className="documentOutlineSlight" style={ { backgroundColor: 'rgba(108, 206, 74 , 0.2)', color: 'rgba(108, 206, 74, 0.8)' } }>Heal</h4>
-                                <input className="documentOutlineSlight" type="number" style={ { backgroundColor: 'rgba(215, 223, 213, 0.2)', color: 'rgba(100, 100, 100, 0.8)', border: 'none', width: '100%' } } placeholder="10"></input>
+                                <input className="documentOutlineSlight" type="number" style={ { backgroundColor: 'rgba(215, 223, 213, 0.2)', color: 'rgba(100, 100, 100, 0.8)', border: 'none', width: '100%' } } placeholder="10" defaultValue="10"></input>
                                 <h4 className="documentOutlineSlight">Damage</h4>
                             </div>
 

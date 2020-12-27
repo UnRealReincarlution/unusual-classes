@@ -71,7 +71,7 @@ let renderDOM = (items) => {
                             <a href="./">DASHBOARD {'>'}</a>
                         </div>
                         
-                        <List props={items} type={_page_type}></List>
+                        <List props={items} type={(_page_type == "characters") ? 'special_char' : _page_type }></List>
                     </div>
                 </div>
             </div>

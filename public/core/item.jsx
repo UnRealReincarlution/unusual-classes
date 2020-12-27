@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
-
 (async () => {
     let doc = JSON.parse(localStorage.getItem("itemLoad"));
-    const characters = useState([]);
+    const characters = [];
 
     if(localStorage.getItem(_params.get("c")) !== undefined) {
 
         db.collection(`users/${auth.getUid()}/characters`).get().then(qs => {
             qs.forEach(async e => {
                 let k = await db.collection(e.data().ref.path).get();
-                characters.push(k);
+                characters.push(k.data());
             })
         });
 
@@ -25,25 +23,38 @@ import React, { useEffect, useState } from "react";
         });
     }
 
-    db.collection(`users/${auth.getUid()}/characters`).get().then(qs => {
-        qs.forEach(async e => {
-            let k = await db.collection(e.data().ref.path).get();
-            setCharacters(characters.push(e.data()));
-        })
-    });
+    firebase.auth().onAuthStateChanged(user => {
+        if(!user) return;
 
-    useEffect(() => {
-        render(doc, characters);
+        db.collection("users").doc(auth.currentUser.uid).collection("characters").get().then(qs => {
+            console.log(qs);
+    
+            qs.forEach(async e => {
+                let k = await db.doc(e.data().ref.path).get();
+                characters.push(k);
+                render(doc, characters);
+            })
+        });
     });
 })();
 
-let addToChar = (character) => {
-    alert("Underlord Lindon 4 the win")
+let addToChar = (c) => {
+   console.log(c.ref.path);
+
+   db.collection("items").where("image", "==", JSON.parse(localStorage.getItem("itemLoad")).image).get().then(q => {
+       q.forEach(e => {
+            console.log(e.ref.path)
+
+            db.doc(c.ref.path).update({
+                items: firebase.firestore.FieldValue.arrayUnion(e.ref)
+            });
+
+           // Set data at **c.ref.path** [items] -> ArrayUnion to add **e.ref.path**
+       });
+   })
 }
 
 function render(doc, chars) {
-    console.log(chars);
-
     ReactDOM.render(
         <div className="item_page_dynamic">
             <div className="header_content item_dynamic">
@@ -68,9 +79,9 @@ function render(doc, chars) {
                         {
                             chars.map(e => {
                                 return (
-                                    <div onClick={() => { addToChar(e) }}>
-                                        <h3>{e.name}</h3>
-                                        <i>+</i>
+                                    <div onClick={() => { if($(`[custom-attribute="${e.data().name}"]`).text() !== "✓") { addToChar(e); $(`[custom-attribute="${e.data().name}"]`).text("✓") }}}>
+                                        <h3>{e.data().name}</h3>
+                                        <i custom-attribute={e.data().name}>+</i>
                                     </div>
                                 )
                             })
