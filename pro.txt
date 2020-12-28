@@ -1,17 +1,47 @@
 # Tasks to Complete
 
-[Character]
-    - Complete Template
-*   - Add Class System
-    ✔ Dynamic Loading
-    - Add Status Effects from Items
-    - Inventory Managment
-    ✔ Add Items to Character
-    ✔ ReDo Character Summary
+# UnRealReincarlution @ Github 2020 - UnusualClasses
+# For Appropriate Viewing, download 'Txt Syntax' for VSC
+# [UFN] = Until Futher Notice
 
-[Campaign]
-    Design
+-- [ Character ] --
+-   Add Class System
+*       Character Viewing
+*       SVG Map
+*       Firebase Storage (Cloned Version Only)
+-       Ability to Create a Class
+
+*    Dynamic Loading
+    
+-    Inventory [STALLED UFN]
+*       View Total Capacity
+*       Add Items to Character
+*       Remove Items from Character
+-       Add Status Effects from Items [STALLED]
+
+-   UI
+*       [REDO] Character Summary
+*       Complete Template
+-       Add or Remove Health
+
+-- [Campaign] --
+    - Design
         - Character View
         - Maps and Art
         - Items
-        - ...other
+        - Complete UI
+    
+    - Classes
+        - Create MASTER Copy of class that is cloned for characters
+        - Create Class UI
+        - Edit/Modify Classes UI and Firebase
+        - Ability to push the created class to the GLOBAL bank for pull into other campaigns.
+    
+    - Create Campaigns
+        - Titled as OWNER
+        - Privelages
+
+-- [List] -- 
+*   UI, Features, ETC...
+
+-   Search Engine, Items, Characters and Campaigns.

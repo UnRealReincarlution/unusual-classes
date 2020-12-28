@@ -22,7 +22,7 @@ class List extends React.Component {
                                 )
                             }else if(this.props.type == "special_char") {
                                 return (
-                                    <Player props={{ a: el, b: "" }} key={el.b} type="small" />
+                                    <Player props={el} key={el.b} type="small" />
                                 )
                             }else {
                                 return (

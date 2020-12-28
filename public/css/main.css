@@ -1424,7 +1424,7 @@ h3.documentOutlineSlight:hover {
 }
 
 /* SVG Accords */
-* {
+.modalBody * {
     position: relative;
     margin: 0;
     padding: 0;
@@ -1436,11 +1436,34 @@ h3.documentOutlineSlight:hover {
       transition: all ease .4s;
 }
 
+.modalBody a strong {
+    padding: 5px;
+    border: 1px solid #c8e4f8;
+    background-color: #94a0b4;
+    color: #c8c8c8;
+
+    border-radius: 3px;
+}
+
+.unlockable  {
+    background: rgba(var(--accent-tan-rgb), 0.2) !important;
+    border-color: rgba(var(--accent-tan-rgb), 0.2) !important;
+    color: rgba(var(--accent-tan-rgb), 1) !important;
+}
+
 .unlocked {
     background: rgba(108, 206, 74, 0.2) !important;
     border-color: rgba(108, 206, 74, 0.8) !important;
     color: rgba(108, 206, 74, 1) !important;
 }
+
+.locked {
+    background: rgba(255,255,255, 0.1) !important;
+    border-color:  rgba(255,255,255, 0.2) !important;
+    color: rgba(255,255,255, 0.3) !important;
+}
+
+
 
 .restricted {
     background-color: rgb(64, 52, 72);
@@ -1448,7 +1471,7 @@ h3.documentOutlineSlight:hover {
   
 .nav {
     margin: 20px auto;
-    width: 455px;
+    width: fit-content;
     min-height: auto;
   }
   
@@ -1457,12 +1480,15 @@ h3.documentOutlineSlight:hover {
     padding-top: 20px; 
 
     background-color: transparent !important;
+    display: flex;
   }
   
   .nav li {
     position: relative;
     padding: 21px 3px 0 3px; 
     float: left; 
+
+    min-width: fit-content;
     
     text-align: center;
     list-style-type: none; 
@@ -1483,7 +1509,7 @@ h3.documentOutlineSlight:hover {
   }
 
   .nav li.unlocked::before, .nav li.unlocked::after{
-    border-color: rgba(108, 206, 74, 0.8) !important;
+    /* border-color: rgba(108, 206, 74, 0.8) !important; */
   }
   
   .nav li::after{
@@ -1523,7 +1549,7 @@ h3.documentOutlineSlight:hover {
   .nav ul ul.unlocked::before{
     content: '';
     position: absolute; top: 0; left: 50%;
-    border-left: 1px solid rgba(78, 255, 19, 0.8);
+    /* border-left: 1px solid rgba(78, 255, 19, 0.8); */
     background-color: transparent !important;
     width: 0; 
     height: 20px;
@@ -1532,6 +1558,8 @@ h3.documentOutlineSlight:hover {
   .nav li a {
     display: inline-block;
     padding: 5px 10px;
+
+    width: fit-content;
     
     border-radius: 5px;
     border: 1px solid #ccc;

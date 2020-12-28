@@ -11,8 +11,11 @@ class ClassModal extends React.Component {
         if(!tree) return;    
 
         return (
-            <li className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "unlockable"}>
-                <a className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "unlockable"}>{tree.name} {(tree.unlocked !== undefined && tree.unlocked) ? `` : `| ${tree.unlock_value}`}</a>
+            
+            <li className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : ""}>
+                <a className={((this.props.data.points < tree.unlock_value) ? "locked" : "unlockable") + " " + ((tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "")}>
+                    {tree.name} {(tree.unlocked !== undefined && tree.unlocked) ? `` : `| ${tree.unlock_value}` }
+                </a>
                 
                 { 
                     (tree.children !== undefined && tree.children.length > 0) 
@@ -25,7 +28,7 @@ class ClassModal extends React.Component {
                     }
                     </ul>)
                     :
-                    (tree.children[0] == "") ? "+" : ""
+                    ""
                 }  
             </li>
         )
@@ -38,7 +41,7 @@ class ClassModal extends React.Component {
 
                 <div className="modalHeader">
                     <h1>{this.props.data.class.capitalize()}</h1>
-                    <p>{this.props.data.points} Point/s</p>
+                    <p>{this.props.data.points} Class Point/s</p>
                 </div>
                 
                 <div className="modalBody">

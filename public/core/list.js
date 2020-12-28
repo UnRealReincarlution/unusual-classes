@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(user => {
 
             qs.forEach((doc, index) => {
                 db.doc(doc.data().ref.path).get().then(qsi => {
-                    col.push(qsi.data());
+                    col.push( {a: qsi.data(), b: doc.data().ref.path} );
 
                     if(index === qs.length) {
                         renderDOM(col);
