@@ -8,21 +8,26 @@ class ClassModal extends React.Component {
     constructTree(tree) {
         console.log("TREE: ", tree);
 
-        if(!tree) return <div>+</div>;
+        if(!tree) return;    
 
         return (
-            <div>
-                <h2>{tree.name} = {tree.unlock_value}</h2>
+            <li className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "unlockable"}>
+                <a className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "unlockable"}>{tree.name} {(tree.unlocked !== undefined && tree.unlocked) ? `` : `| ${tree.unlock_value}`}</a>
+                
                 { 
-                    (tree.children && tree.children.length > 0) 
-                    ?
-                    tree.children.map((e) => { 
-                        return ( this.constructTree(e) )
-                    }) 
+                    (tree.children !== undefined && tree.children.length > 0) 
+                    ? (
+                    <ul className={(tree.unlocked !== undefined && tree.unlocked) ? "unlocked" : "unlockable"}>
+                    {
+                        tree.children.map((e) => { 
+                            return ( this.constructTree(e)  )
+                        }) 
+                    }
+                    </ul>)
                     :
                     (tree.children[0] == "") ? "+" : ""
-                }
-            </div>
+                }  
+            </li>
         )
     }
 
@@ -37,9 +42,13 @@ class ClassModal extends React.Component {
                 </div>
                 
                 <div className="modalBody">
-                    {
-                        this.constructTree(this.props.tree)
-                    }
+                    <nav className="nav">
+                        <ul>
+                            {
+                                this.constructTree(this.props.tree)
+                            }
+                        </ul>            
+                    </nav>
                 </div>
             </div>
         );
