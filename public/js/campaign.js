@@ -8,7 +8,7 @@ class Campaign extends React.Component {
     }
 
     handleClick = (e) => {
-        localStorage.setItem("renderCampaign", JSON.stringify(this.state.props.b));
+        localStorage.setItem("renderCampaign", this.state.props.b);
         document.location.href = `${document.location.origin}/campaign`;
     }
 

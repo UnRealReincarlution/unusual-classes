@@ -20,9 +20,11 @@ class CampaignPage extends React.Component {
     componentDidMount() {
         let document_to_load = localStorage.getItem("renderCampaign");
 
-        if(_params.get("renderCampaign") == undefined) {
+        if(localStorage.getItem("renderCampaign") == undefined) {
             window.href = window.origin;
         }
+
+        console.log(document_to_load)
 
         this.getData(document_to_load);
     }
@@ -32,6 +34,7 @@ class CampaignPage extends React.Component {
             const response = await db.doc(document_to_load).get();
             this.setState({ data: response.data(), items: [], modalIsOpen: false, modalData: {} });
 
+            console.log(response.data());
             // let arr = [...this.state.items];
             // this.state.data.items.forEach(async value => {
             //     await db.doc(value.path).get().then(e => {
@@ -70,11 +73,11 @@ class CampaignPage extends React.Component {
         this.setState({ modalIsOpen: false });
     }
 
-    render() {
+    render() {        
         if(this.state.data) {
             return (
                 <div className="item_page_dynamic relativePage">
-                    <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.data} tree={this.state.modalData.tree}/>
+                    {/* <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.data} tree={this.state.modalData.tree}/> */}
                     
                     <div className="header_content item_dynamic">
                         <h1>{this.state.data.name}</h1>

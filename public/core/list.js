@@ -41,7 +41,7 @@ firebase.auth().onAuthStateChanged(user => {
         
             qs.forEach((doc, index) => {
                 db.doc(doc.data().ref.path).get().then(qsi => {
-                    col.push(qsi.data());
+                    col.push( {a: qsi.data(), b: doc.data().ref.path} );
 
                     if(index === qs.length) {
                         renderDOM(col);
@@ -71,7 +71,7 @@ let renderDOM = (items) => {
                             <a href="./">DASHBOARD {'>'}</a>
                         </div>
                         
-                        <List props={items} type={(_page_type == "characters") ? 'special_char' : _page_type }></List>
+                        <List props={items} type={(_page_type == "characters") ? 'special_char' : (_page_type == "campaigns") ? "special_camp" : _page_type }></List>
                     </div>
                 </div>
             </div>

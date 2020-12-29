@@ -24,6 +24,10 @@ class List extends React.Component {
                                 return (
                                     <Player props={el} key={el.b} type="small" />
                                 )
+                            }else if(this.props.type == "special_camp") {
+                                return (
+                                    <Campaign props={el} key={el.b} type="large" />
+                                )
                             }else {
                                 return (
                                     <Item props={el} key={el.id} type="small"/>
