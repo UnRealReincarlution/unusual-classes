@@ -22,7 +22,7 @@ class Item extends React.Component {
 
                     <div className={((this.state.props.enchanted) ? `game_item_small divine` : `game_item_small ${this.state.props.rarity} `)}>
                         <h4>{this.state.props.rarity.toUpperCase() + " " + this.state.props.type.toUpperCase()}</h4>
-                        <h3 style={{ fontFamily: 'Wayfinder', fontSize: '2.8em'}}>{this.state.props.name}</h3>
+                        <h3 style={{ fontFamily: 'Wayfinder', fontSize: '2.8em', letterSpacing: 'normal' }}>{this.state.props.name}</h3>
                     </div>
                 </div>
             );

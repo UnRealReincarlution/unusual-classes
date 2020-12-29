@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(async user => {
 
         // renderDOM(items, players, campaigns, user);
 
-        await db.collection(`users/${user.uid}/campaigns`).orderBy("running", "asc").limit(1).get().then(qs => qs.forEach(doc => db.doc(doc.data().ref.path).get().then(q => { campaigns.push(q.data()) })));
+        await db.collection(`users/${user.uid}/campaigns`).orderBy("running", "asc").limit(1).get().then(qs => qs.forEach(doc => db.doc(doc.data().ref.path).get().then(q => { campaigns.push( {a: q.data(), b: doc.data().ref.path})})));
         await db.collection(`users/${user.uid}/items`).orderBy("date", "asc").limit(6).get().then(qs => qs.forEach(doc => db.doc(doc.data().ref.path).get().then(q => { items.push(q.data()); localStorage.setItem(q.data().id, JSON.stringify(q.data())); })));
         await db.collection(`users/${user.uid}/characters`).orderBy("date", "asc").limit(6).get().then(qs => qs.forEach(doc => db.doc(doc.data().ref.path).get().then(q => { players.push( { a: q.data(), b: doc.data().ref.path })})));
         await db.collection(`users/${user.uid}/campaigns`).orderBy("running", "asc").limit(1).get().then(qs => qs.forEach(doc => db.doc(doc.data().ref.path).get().then(q => { campaigns.push(q.data()) })));

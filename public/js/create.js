@@ -47,7 +47,7 @@ class Create extends React.Component {
                     name: $(".create_name")[0].value,
                     rarity: rarity,
                     type: $(".create_type")[0].value,
-                    weight: $(".create_weight")[0].value
+                    weight: parseInt($(".create_weight")[0].value)
                 })
             });
         });
@@ -79,7 +79,7 @@ class Create extends React.Component {
                             }
                         </div>
 
-                        <input className="create_weight" placeholder="Weight (Space between value and unit) e.g 5 kg"></input>
+                        <input className="create_weight" placeholder="e.g. 1, in Kg (Do not include unit)"></input>
 
                         <input onChange={this.handleFile} className={"image "} id="drag-n-drop" type="file" src="" alt="Submit" width="200" height="200" accept=".png,.jpg,.gif,.jpeg"></input>
                         

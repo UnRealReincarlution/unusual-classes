@@ -8,7 +8,8 @@ class Campaign extends React.Component {
     }
 
     handleClick = (e) => {
-        document.location.href = `${document.location.origin}/campaign?c=${this.state.props.id}`;
+        localStorage.setItem("renderCampaign", this.state.props.b);
+        document.location.href = `${document.location.origin}/campaign`;
     }
 
     render() {
@@ -20,7 +21,7 @@ class Campaign extends React.Component {
                     <div>
                         <div>
                             <h1 style={{ margin: 0 }}>
-                                {this.state.props.name}
+                                {this.state.props.a.name}
                             </h1>
                         </div>
                         
@@ -29,14 +30,14 @@ class Campaign extends React.Component {
                                 <p style={{ letterSpacing: '0px' }}>PLAYERS</p>
                                 
                                 <p>
-                                    {this.state.props.info.players}
+                                    {this.state.props.a.info.players}
                                 </p>
                             </div>
         
                             <div>
                                 <p style={{ letterSpacing: '0px' }}>STATUS</p>
                                 <p>
-                                    {(!this.state.props.info.paused) ? 'PLAYING' : 'PAUSED'}
+                                    {(!this.state.props.a.info.paused) ? 'PLAYING' : 'PAUSED'}
                                 </p>
                             </div>
                         </div>
@@ -53,32 +54,32 @@ class Campaign extends React.Component {
                     <div>
                        
                         <h1>
-                            {this.state.props.name}
+                            {this.state.props.a.name}
                         </h1>
                     </div>
                     
     
-                    <p>{this.state.props.desc}</p>
+                    <p>{this.state.props.a.desc}</p>
     
                     <div className="campaign_props">
                         <div>
                             <p>YEAR</p>
                             <p>
-                                {this.state.props.info.year}
+                                {this.state.props.a.info.year}
                             </p>
                         </div>
     
                         <div>
                             <p>PLAYERS</p>
                             <p>
-                                {this.state.props.info.players}
+                                {this.state.props.a.info.players}
                             </p>
                         </div>
     
                         <div>
                             <p>STATUS</p>
                             <p>
-                                {(!this.state.props.info.paused) ? 'PLAYING' : 'PAUSED'}
+                                {(!this.state.props.a.info.paused) ? 'PLAYING' : 'PAUSED'}
                             </p>
                         </div>
                     </div>

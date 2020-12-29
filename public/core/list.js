@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(user => {
 
             qs.forEach((doc, index) => {
                 db.doc(doc.data().ref.path).get().then(qsi => {
-                    col.push(qsi.data());
+                    col.push( {a: qsi.data(), b: doc.data().ref.path} );
 
                     if(index === qs.length) {
                         renderDOM(col);
@@ -41,7 +41,7 @@ firebase.auth().onAuthStateChanged(user => {
         
             qs.forEach((doc, index) => {
                 db.doc(doc.data().ref.path).get().then(qsi => {
-                    col.push(qsi.data());
+                    col.push( {a: qsi.data(), b: doc.data().ref.path} );
 
                     if(index === qs.length) {
                         renderDOM(col);
@@ -64,14 +64,14 @@ let renderDOM = (items) => {
                 </div>
                 
 
-                <div className="linear gapNormal paddingNormal full80">
+                <div className="linear gapNormal paddingNormal full">
                     <div className="vertical full">
                         <div className="linear center space_between">
                             <h2>All {_page_type.capitalize()}</h2>
                             <a href="./">DASHBOARD {'>'}</a>
                         </div>
                         
-                        <List props={items} type={_page_type}></List>
+                        <List props={items} type={(_page_type == "characters") ? 'special_char' : (_page_type == "campaigns") ? "special_camp" : _page_type }></List>
                     </div>
                 </div>
             </div>
