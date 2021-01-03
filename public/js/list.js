@@ -16,17 +16,17 @@ class List extends React.Component {
                                 return (
                                     <Campaign props={el} key={el.id} type="large" />
                                 )
-                            }else if(this.props.type == 'player' || this.props.type == 'characters'){
-                                return (
-                                    <Player props={el} key={el.b} type="small" />
-                                )
-                            }else if(this.props.type == "special_char") {
+                            }else if(this.props.type == 'player' || this.props.type == 'characters' || this.props.type == "special_char"){
                                 return (
                                     <Player props={el} key={el.b} type="small" />
                                 )
                             }else if(this.props.type == "special_camp") {
                                 return (
                                     <Campaign props={el} key={el.b} type="large" />
+                                )
+                            }else if(this.props.type == "class") {
+                                return (
+                                    <h3 className="documentOutlineSlight" style={{ width: 'fit-content' }} onClick={() => { this.props.setModalData(el.a); this.props.showModal()}}>{el.a.name.toUpperCase()}</h3>
                                 )
                             }else {
                                 return (

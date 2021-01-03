@@ -9,6 +9,11 @@ var firebaseConfig = {
     measurementId: "G-1DT5KRVYNC"
 };
 
+(() => {
+    $("#content").css('height', `calc(100% - ${$("header").css('height')} - ${$("footer").css('height')})`);
+    $("#content").css('height', `calc(100% - ${$("header").css('height')}`);
+})();
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 

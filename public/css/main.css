@@ -836,6 +836,31 @@ button:hover {
     padding: 45px;
 }
 
+.ql-toolbar.ql-snow {
+    background-color: #ffffff;
+    border: 2px solid var(--accent-tan) !important;
+
+    border-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+    background-color: #ffffff;
+    border: 2px solid var(--accent-tan);
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#editor h1 {
+    font-size: 4em !important;
+}
+
+.width100 {
+    width: 100%;
+}
+
 .item_dynamic > div {
     width: 50%;
 }
@@ -1255,6 +1280,10 @@ h3.documentOutlineSlight:hover {
     cursor: pointer;
 }
 
+.heightFit {
+    height: fit-content;
+}
+
 .lel {
     justify-content: center;
     align-items: center;
@@ -1506,10 +1535,6 @@ h3.documentOutlineSlight:hover {
     height: 20px;
 
     border-top: 1px solid #ccc;
-  }
-
-  .nav li.unlocked::before, .nav li.unlocked::after{
-    /* border-color: rgba(108, 206, 74, 0.8) !important; */
   }
   
   .nav li::after{
