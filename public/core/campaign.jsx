@@ -135,7 +135,7 @@ class CampaignPage extends React.Component {
                                     <div className="linear center space_between">
                                         <h2>Lore</h2>
                                         
-                                        <a href="./create_lore">Create {'>'}</a>
+                                        <a href="./create_lore" onClick={() => {localStorage.setItem("lore", localStorage.getItem("renderCampaign"))}}>Create {'>'}</a>
                                     </div>
                                     
                                     <List props={[]} type="item"></List>

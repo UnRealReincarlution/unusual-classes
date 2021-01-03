@@ -178,6 +178,6 @@ class PlayerPage extends React.Component {
             )
         }
     }
-};
+}
 
 ReactDOM.render(<PlayerPage/>, document.getElementById('content'));
