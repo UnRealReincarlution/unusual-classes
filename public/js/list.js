@@ -7,6 +7,8 @@ class List extends React.Component {
     }
 
     render() {
+        let i = 0;
+
         if(this.state.props) {
             return (
                 <div style={{ gap: '15px', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -25,8 +27,18 @@ class List extends React.Component {
                                     <Campaign props={el} key={el.b} type="large" />
                                 )
                             }else if(this.props.type == "class") {
+                                console.log(el);
+
                                 return (
                                     <h3 className="documentOutlineSlight" style={{ width: 'fit-content' }} onClick={() => { this.props.setModalData(el.a); this.props.showModal()}}>{el.a.name.toUpperCase()}</h3>
+                                )
+                            }else if(this.props.type == "lore"){
+                                i++;
+
+                                if(i == 4) return(<></>);
+                                
+                                return (
+                                    <Lore props={el} key={el.b} type="small"/>
                                 )
                             }else {
                                 return (

@@ -13,9 +13,10 @@ class CampaignPage extends React.Component {
         this.state = { props };
         this.state.props = this.state.props.props;
 
-        this.showClassesModal = this.showClassesModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.setModalData = this.setModalData.bind(this);
+        this.loadStateData = this.loadStateData.bind(this);
+        this.showClassesModal = this.showClassesModal.bind(this);
     }
 
     componentDidMount() {
@@ -33,42 +34,67 @@ class CampaignPage extends React.Component {
     async getData(document_to_load) {
         try {
             const response = await db.doc(document_to_load).get();
-            this.setState({ data: response.data(), players: [], classes: [], modalIsOpen: false, modalData: {} });
+            this.setState({ data: response.data(), players: [], classes: [], lore: [], modalIsOpen: false, modalData: {} });
 
             console.log(response.data());
-            
-            // let arr = [...this.state.items];
-            // this.state.data.items.forEach(async value => {
-            //     await db.doc(value.path).get().then(e => {
-            //         arr.push(e.data());   
-            //     });
 
-            //     this.setState({ items: arr });
-            //     this.forceUpdate();
-            // });
-
-            let arr = [...this.state.players];
+            let players = [...this.state.players];
             
             db.collection(`${document_to_load}/players`).get().then(q => {
-                q.forEach(a => arr.push( {a: a.data(), b: `${document_to_load}/players/${a.id}` }));
+                q.forEach(a => players.push( {a: a.data(), b: `${document_to_load}/players/${a.id}` }));
 
-                this.setState({ players: arr });
+                this.setState({ players: players });
                 this.forceUpdate();
             })  
 
-            let arr2 = [...this.state.classes];
+            let classes = [...this.state.classes];
             
             db.collection(`${document_to_load}/classes`).get().then(q => {
-                q.forEach(a => arr2.push( {a: a.data(), b: `${document_to_load}/classes/${a.id}` }));
+                q.forEach(a => classes.push( {a: a.data(), b: `${document_to_load}/classes/${a.id}` }));
 
-                this.setState({ classes: arr2 });
+                this.setState({ classes: classes });
                 this.forceUpdate();
             })  
 
+            let lore = [...this.state.lore];
+            
+            db.collection(`${document_to_load}/lore`).where("type", "==", "published").get().then(q => {
+                q.forEach(a => lore.push( {a: a.data(), b: `${document_to_load}/lore/${a.id}` }));
+
+                this.setState({ lore: lore });
+                this.forceUpdate();
+            })  
+
+            db.collection(`${document_to_load}/lore`).where("type", "==", "draft")
+            .where("author", "==", auth.currentUser.uid)
+            .get().then(q => {
+                q.forEach(a => lore.push( {a: a.data(), b: `${document_to_load}/lore/${a.id}` }));
+
+                this.setState({ lore: lore });
+                this.forceUpdate();
+            })
+
+            //this.loadStateData("lore");
+
+            // For Next Time.... -> Load all of the DRAFTS with a DRAFT Tag
+            //                   -> Add Redirect Links for Viewable Content to load content directly.
+            //                   -> Add the ability to view &/ edit a lore page
+            //                   -> Properly format View page
 
         } catch (err) {
             return [];
         }
+    }
+
+    loadStateData(data) {   
+        let array = [];
+
+        db.collection(`${document_to_load}/${data}`).get().then(q => {
+            q.forEach(a => array.push( {a: a.data(), b: `${document_to_load}/${data}/${a.id}` }));
+
+            this.setState({ [`${array}`]: array });
+            this.forceUpdate();
+        }) 
     }
 
     showClassesModal() {
@@ -111,7 +137,7 @@ class CampaignPage extends React.Component {
                         
                         <div className="linear width100" style={ { width: '100%', height: '100%' } }>
                             <div className="vertical gapNormal paddingNormal width100" style={ { width: '100%' } }>
-                                <div className="vertical half1" style={ {  height: '100%' } }>
+                                <div className="vertical" style={ {  height: '100%' } }>
                                     <div className="linear center space_between">
                                         <h2>Characters</h2>
                                         
@@ -121,7 +147,7 @@ class CampaignPage extends React.Component {
                                     <List props={this.state.players} type="player"></List>
                                 </div>
 
-                                <div className="vertical half2" style={ {  height: '100%' } }>
+                                <div className="vertical" style={ {  height: '100%' } }>
                                     <div className="linear center space_between">
                                         <h2>Classes</h2>
                                     </div>
@@ -131,14 +157,14 @@ class CampaignPage extends React.Component {
                             </div>
 
                             <div className="vertical gapNormal paddingNormal" style={ { width: "100%" } }>
-                                <div className="vertical half1">
+                                <div className="vertical">
                                     <div className="linear center space_between">
                                         <h2>Lore</h2>
                                         
                                         <a href="./create_lore" onClick={() => {localStorage.setItem("lore", localStorage.getItem("renderCampaign"))}}>Create {'>'}</a>
                                     </div>
                                     
-                                    <List props={[]} type="item"></List>
+                                    <List props={this.state.lore} type="lore"></List>
                                 </div>
                             </div>
                         </div>

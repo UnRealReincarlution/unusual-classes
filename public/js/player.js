@@ -41,7 +41,7 @@ class Player extends React.Component {
                         <div className="center vertical" style={ { justifyContent: 'center', textAlign: 'left', padding: '15px' }}>
                             <h2>{this.state.props.a.name}</h2>
     
-                            <p>{this.stringEnter}</p>
+                            <p style={{ alignSelf: 'flex-start' }}>{this.stringEnter}</p>
                         </div>
 
                         <div>

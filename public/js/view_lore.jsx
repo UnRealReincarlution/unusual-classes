@@ -9,9 +9,6 @@ class LoreCreate extends React.Component {
 
         this.publishLore = this.publishLore.bind(this);
         this.debounceLore = this.debounceLore.bind(this);
-
-        this.loadLore = this.loadLore.bind(this);
-        this.loadExistingLore = this.loadExistingLore.bind(this);
     }
 
     publishLore() {
@@ -19,8 +16,7 @@ class LoreCreate extends React.Component {
             title: $("#title").val(),
             body: quill.root.innerHTML,
             type: 'published',
-            simple_body: quill.getText(),
-            date: new Date()
+            simple_body: quill.getText()
         });
 
         window.location.href = window.location.origin + "/campaign"
@@ -35,16 +31,13 @@ class LoreCreate extends React.Component {
 
     debounceLore() {
         if(new Date() - lastDebounce > 2500) {
-
-            db.doc(this.state.docLocation).update({ 
+            db.doc(localStorage.getItem("editing_lore")).update({ 
                 body: quill.root.innerHTML, 
                 title: $("#title").val(),
                 simple_body: quill.getText()
-            }).catch(e => {
-                this.setState({ synced: false, error: true });
-            }).then(e => {
-                this.setState({ synced: true });
             });
+
+            this.setState({ synced: true });
         }
     }
 
@@ -65,28 +58,13 @@ class LoreCreate extends React.Component {
         })
     }
 
-    loadLore() {
+    loadLore(user) {
         let loc = localStorage.getItem("editing_lore");
 
         db.doc(loc).get().then(e => {
             console.log(e);
 
-            this.setState({ docId: e.id, synced: true, docLocation: loc });
-            
-            $("#title").val(e.data().title);
-            quill.root.innerHTML = e.data().body;
-        })
-    }
-
-    loadExistingLore() {
-        let loc = _params.get("e");
-
-        localStorage.setItem("editing_lore", _params.get("e"));
-
-        db.doc(loc).get().then(e => {
-            console.log(e);
-
-            this.setState({ docId: e.id, synced: true, docLocation: loc });
+            this.setState({ docId: e.id, synced: true });
             
             $("#title").val(e.data().title);
             quill.root.innerHTML = e.data().body;
@@ -96,13 +74,9 @@ class LoreCreate extends React.Component {
     render() {
         return (
             <div className="item_page_dynamic header_content">
-                <h1>Create Lore</h1>
+                <h1>{"TITLE"}</h1>
 
                 <div id="input">
-                    <h2>Title</h2>
-                    <input type="text" style={ { width: '100%' } } id="title"></input>
-
-                    <h2>Body</h2>
                     <div id="editor"></div>
 
                     <div className="linear marginLess" style={ { justifyContent: 'space-between', padding: '15px' } }>
@@ -119,33 +93,11 @@ class LoreCreate extends React.Component {
     }
 
     componentDidMount() {
-        var toolbarOptions = [
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            [{ 'align': [] }],
-
-            ['bold', 'italic', 'underline'],
-            ['blockquote', 'code-block'],
-            
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }], 
-            ['link', 'image']
-        ];
-
-        quill = new Quill('#editor', {
-            modules: {
-                toolbar: toolbarOptions
-            },
-            theme: 'snow'
-        });
-
         firebase.auth().onAuthStateChanged(user => {
-            if(_params.get("e") !== null) this.loadExistingLore()
-            else if(window.performance.navigation.type == 1) this.loadLore();
-            else if(!this.props.edit && user) this.createLore(user);
+            if(window.performance.navigation.type == 1) {
+                this.loadLore(user);
+            }else if(!this.props.edit && user) this.createLore(user);
         });
-        
-        quill.on('text-change', (e, oe, sc) => {
-            this.updateLore(e);
-        })
     }
 }
 
