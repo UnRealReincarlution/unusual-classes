@@ -10,6 +10,7 @@
 *       SVG Map
 *       Firebase Storage (Cloned Version Only)
 -       Ability to Create a Class
+-       Description Tooltip
 
 *    Dynamic Loading
     
@@ -26,13 +27,13 @@
 
 -- [Campaign] --
     - Design
-        - Character View
+*       Character View
         - Maps and Art
-        - Items
+*       Items
         - Complete UI
     
     - Classes
-        - Create MASTER Copy of class that is cloned for characters
+*       Create MASTER Copy of class that is cloned for characters
         - Create Class UI
         - Edit/Modify Classes UI and Firebase
         - Ability to push the created class to the GLOBAL bank for pull into other campaigns.

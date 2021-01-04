@@ -258,7 +258,8 @@ button:hover {
 }
 
 .header_content h1 {
-    font-size: 6em;
+    font-size: 500%;
+    text-align: center;
     margin-top: 35px;
 }
 
@@ -1310,6 +1311,14 @@ h4.documentOutlineSlight {
 
 h4.documentOutlineSlight:hover {
     cursor: pointer;
+}
+
+.ql-editor p {
+    font-size: 15px;
+}
+
+#input {
+    width: 40%;
 }
 
 h3.documentOutlineSlight {

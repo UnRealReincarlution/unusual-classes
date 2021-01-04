@@ -76,9 +76,9 @@ class CampaignPage extends React.Component {
 
             //this.loadStateData("lore");
 
-            // For Next Time.... -> Load all of the DRAFTS with a DRAFT Tag
-            //                   -> Add Redirect Links for Viewable Content to load content directly.
-            //                   -> Add the ability to view &/ edit a lore page
+            // For Next Time.... -> ----------------------  Load all of the DRAFTS with a DRAFT Tag
+            //                   -> ----------------------  Add Redirect Links for Viewable Content to load content directly.
+            //                   -> ----------------------  Add the ability to view &/ edit a lore page
             //                   -> Properly format View page
 
         } catch (err) {
@@ -130,7 +130,7 @@ class CampaignPage extends React.Component {
                     <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.modalData} type="view-only"/>
                     
                     <div className="header_content item_dynamic vertical">
-                        <div className="vertical box marginLess gap15 item_dynamic heightFit" style={ { width: '100%' } }>
+                        <div className="vertical box marginLess gap15 item_dynamic heightFit" style={ { width: '50%' } }>
                             <h1>{this.state.data.name}</h1>
                             <p style={ { width: '100%' } }>{this.state.data.desc}</p>
                         </div>

@@ -15,11 +15,11 @@ class Lore extends React.Component {
     handleClick() {
         localStorage.setItem("renderCharacter", this.state.props.b);
 
-        if(this.state.props.props.a.author == auth.currentUser.uid) {
-
+        if(this.state.props.props.a.type !== "published") {
             document.location.href = `${document.location.origin}/create_lore?e=${this.state.props.props.b}`;
         }else {
-            document.location.href = `${document.location.origin}/lore`;
+            localStorage.setItem("readLore", this.state.props.props.b)
+            document.location.href = `${document.location.origin}/view_lore`;
         }
         
     }
