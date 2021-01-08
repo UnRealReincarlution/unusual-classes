@@ -12,8 +12,6 @@ class LoreCreate extends React.Component {
         let loc = localStorage.getItem("readLore");
 
         db.doc(loc).get().then(e => {
-            console.log(e);
-
             this.setState({ docId: e.id, synced: true, docInformation: { ...e.data(), loading: false }});
             this.forceUpdate();
         })

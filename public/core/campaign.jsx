@@ -26,8 +26,6 @@ class CampaignPage extends React.Component {
             window.href = window.origin;
         }
 
-        console.log(document_to_load)
-
         this.getData(document_to_load);
     }
 
@@ -35,8 +33,6 @@ class CampaignPage extends React.Component {
         try {
             const response = await db.doc(document_to_load).get();
             this.setState({ data: response.data(), players: [], classes: [], lore: [], modalIsOpen: false, modalData: {} });
-
-            console.log(response.data());
 
             let players = [...this.state.players];
             
@@ -75,11 +71,6 @@ class CampaignPage extends React.Component {
             })
 
             //this.loadStateData("lore");
-
-            // For Next Time.... -> ----------------------  Load all of the DRAFTS with a DRAFT Tag
-            //                   -> ----------------------  Add Redirect Links for Viewable Content to load content directly.
-            //                   -> ----------------------  Add the ability to view &/ edit a lore page
-            //                   -> Properly format View page
 
         } catch (err) {
             return [];
@@ -130,7 +121,7 @@ class CampaignPage extends React.Component {
                     <ClassModal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} data={this.state.modalData} type="view-only"/>
                     
                     <div className="header_content item_dynamic vertical">
-                        <div className="vertical box marginLess gap15 item_dynamic heightFit" style={ { width: '50%' } }>
+                        <div className="vertical box marginLess gap15 item_dynamic heightFit" style={ { width: 'fit-content' } }>
                             <h1>{this.state.data.name}</h1>
                             <p style={ { width: '100%' } }>{this.state.data.desc}</p>
                         </div>

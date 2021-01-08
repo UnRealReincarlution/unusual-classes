@@ -6,8 +6,6 @@ class ClassModal extends React.Component {
     }
 
     constructTree(tree) {
-        console.log("TREE: ", tree);
-
         if(!tree) return;    
 
         if(this.props.type !== "view-only") {

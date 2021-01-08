@@ -193,6 +193,18 @@ input {
     font-size: 1em;
 }
 
+textarea {
+    width: 90%;
+    padding: 15px;
+    border: 2px solid var(--accent-tan);
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+#inputs input {
+    width: 90%;
+}
+
 .search_field {
     width: 100%;
     display: flex;
@@ -902,8 +914,24 @@ button:hover {
     border-bottom-right-radius: 5px;
 }
 
+.ql-container {
+    max-width: 80%;
+}
+
+.ql-container img {
+    width: 100%;
+}
+
 #editor h1 {
     font-size: 4em !important;
+}
+
+#inputs {
+    width: 50%;
+}
+
+#inputs h3 {
+    margin: 15px;
 }
 
 .width100 {

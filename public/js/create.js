@@ -1,5 +1,5 @@
 
-class Create extends React.Component {
+class CreateItem extends React.Component {
     constructor(props) {
         super(props);
 

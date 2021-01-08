@@ -40,8 +40,6 @@ class Lore extends React.Component {
     }
 
     render() {
-        console.log(this);
-
         return (
             <div className="player lore" onClick={this.handleClick} key={this.props.props.b} onMouseEnter={this.hover} onMouseLeave={this.unhover}>
                 <div>
