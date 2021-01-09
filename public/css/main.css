@@ -29,6 +29,7 @@
     --accent-tan-rgb: 219, 187, 149;
 
     --font-primary: #403448;
+    --font-primary-rgb: 64, 52, 72;
 
     --player-height: 100px;
 
@@ -926,6 +927,10 @@ button:hover {
     font-size: 4em !important;
 }
 
+#editor {
+    max-width: 100%;
+}
+
 #inputs {
     width: 50%;
 }
@@ -936,6 +941,31 @@ button:hover {
 
 .width100 {
     width: 100%;
+}
+
+.mediumBorderVertical {
+    padding-top: 20px !important;
+
+    position: relative;
+    background-color: transparent !important;
+    display: flex;
+}
+
+.mediumBorderVertical::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    /* border-left: 1px solid rgba(78, 255, 19, 0.8); */
+    background-color: transparent !important;
+    width: 0;
+    height: 10px;
+    border: none !important;
+    border-left: 1px solid #ccc !important;
+}
+
+.createClass .closeButton {
+    display: none;
 }
 
 .item_dynamic > div {
@@ -1700,3 +1730,38 @@ h3.documentOutlineSlight:hover {
     content: '';
     border-color: #94a0b4;
   }
+
+.modalOverlay {
+    position: fixed;
+    align-self: center;
+    justify-self: center;
+
+    background-color: rgba(var(--font-primary-rgb), 1);
+    color: var(--accent-tan);
+
+    border-radius: 3px;
+    padding: 25px;
+
+    border: 2px solid var(--accent-tan);
+}
+
+.modalOverlay .closeButton {
+    display: flex;
+}
+
+.modalOverlay button {
+    background-color: var(--accent-tan);
+    border-radius: 3px;
+    color: var(--font-primary);
+    width: 100%;
+
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.fullCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

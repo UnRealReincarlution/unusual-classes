@@ -141,6 +141,8 @@ class CampaignPage extends React.Component {
                                 <div className="vertical" style={ {  height: '100%' } }>
                                     <div className="linear center space_between">
                                         <h2>Classes</h2>
+
+                                        <a href="./create?v=class">CREATE {'>'}</a>
                                     </div>
                                     
                                     <List props={this.state.classes} type="class" showModal={this.showClassesModal} setModalData={this.setModalData}></List>

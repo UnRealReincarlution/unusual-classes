@@ -124,7 +124,7 @@ class LoreCreate extends React.Component {
             [{ 'align': [] }],
 
             ['bold', 'italic', 'underline'],
-            ['blockquote', 'code-block'],
+            // ['blockquote', 'code-block'],
             
             [{ 'list': 'ordered'}, { 'list': 'bullet' }], 
             ['link', 'image']

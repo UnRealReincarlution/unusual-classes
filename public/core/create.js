@@ -29,6 +29,27 @@ let renderDOM = () => {
             <CreateCampaign props={doc} type={_page_type} />
             ,document.getElementById('content')
         );
+    }else if(_page_type == "class") {
+        let doc = {
+            name: 'Un-named',
+            tree: {
+                name: "Root",
+                unlock_value: 0,
+                unlocked: true,
+                children: [
+                    {
+                        name: 'hey',
+                        unlock_value: 0,
+                        unlocked: true,
+                    }
+                ]
+            }
+        }
+    
+        ReactDOM.render(
+            <CreateClass props={doc} type={_page_type} modalData={doc}/>
+            ,document.getElementById('content')
+        );
     }
 }
 
