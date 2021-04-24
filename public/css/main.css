@@ -1305,7 +1305,7 @@ input[type="file"]::before {
     outline: none;
 
     white-space: nowrap;
-    -webkit-user-select: none;
+    user-select: none;
     cursor: pointer;
 
     font-weight: 700;

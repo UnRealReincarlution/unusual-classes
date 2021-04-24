@@ -11,7 +11,7 @@ class ClassModal extends React.Component {
         this.setState({ add: true });
     }
 
-    constructTree(tree) {
+    constructTree(tree) {  
         console.log(tree)
         if(!tree) return;    
         
@@ -23,9 +23,11 @@ class ClassModal extends React.Component {
                             {tree.name} {(tree.unlocked !== undefined && tree.unlocked) ? `` : `| ${tree.unlock_value}` }
                         </a>
 
-                        {/* <li className="mediumBorderVertical">
-                            <a>+</a>
-                        </li> */}
+                        {
+                            /* <li className="mediumBorderVertical">
+                                <a>+</a>
+                            </li> */
+                        }
                     </div>
                     
                     { 
