@@ -11,7 +11,7 @@ class CreateClass extends React.Component {
         return (
             <div className="item_page_dynamic">
                 <div className="header_content item_dynamic vertical createClass" style={{ padding: '0px' }}>
-                    <ClassModal isOpen={true} onRequestClose={this.closeModal} data={this.state.props.modalData} type="create"/>                 
+                    <ClassModal isOpen={true} onRequestClose={this.closeModal} data={this.state.props.modalData} type="create"/>             
                 </div>
             </div>
         );

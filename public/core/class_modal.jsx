@@ -5,14 +5,31 @@ class ClassModal extends React.Component {
         this.state = { props };
         this.state.add = false;
         this.addNode = this.addNode.bind(this);
+        this.createClass = this.createClass.bind(this);
     }
 
-    addNode() {
-        this.setState({ add: true });
+    addNode(tree) {
+        console.log(tree);
+        this.setState({ add: !this.state.add });
     }
 
+    bindNode() {
+
+    }
+
+    updateTitle(e) {
+        this.props.data.tree.name = e.target.value;
+        this.props.data.name = e.target.value;
+
+        this.forceUpdate();
+    }
+
+<<<<<<< Updated upstream
     constructTree(tree) {  
         console.log(tree)
+=======
+    constructTree(tree) {
+>>>>>>> Stashed changes
         if(!tree) return;    
         
         if(this.props.type == "create") {
@@ -24,9 +41,18 @@ class ClassModal extends React.Component {
                         </a>
 
                         {
+<<<<<<< Updated upstream
                             /* <li className="mediumBorderVertical">
                                 <a>+</a>
                             </li> */
+=======
+                            (!tree.children) ?
+                            <li className="mediumBorderVertical">
+                                <a onClick={() => this.addNode(tree)}>+</a>
+                            </li>
+                            :
+                            <></>
+>>>>>>> Stashed changes
                         }
                     </div>
                     
@@ -40,7 +66,7 @@ class ClassModal extends React.Component {
                             }) 
                         }
 
-                        <li><div><a onClick={this.addNode}>+</a></div></li>
+                        <li><div><a onClick={() => this.addNode(tree)}>+</a></div></li>
                         </ul>)
                         :
                         ""
@@ -94,9 +120,18 @@ class ClassModal extends React.Component {
         }
     }
 
-    render() {
-        console.log(this.props.data.tree);
+    createClass(e) {
+        var classCreation = {
+            title: this.props.data.name,
+            tree: this.props.data.tree
+        }
 
+        db.collection(`campaigns/${campaign}/classes`).add(classCreation).then(e => {
+            console.log(e);
+        });
+    }
+
+    render() {
         if(!this.props.data.name) return( <div></div> );
 
         return (
@@ -106,7 +141,8 @@ class ClassModal extends React.Component {
                 <div className="modalHeader">
                     { (this.props.type !== "view-only" && this.props.type !== "create") ? <h1>{this.props.data.class.capitalize()}</h1> : (this.props.type == "create") ? <></> : <h1>{this.props.data.name.capitalize()}</h1>}
                     { (this.props.type !== "view-only" && this.props.type !== "create") ? <p>{this.props.data.points} Class Point/s</p> : ""}
-                    { (this.props.type == "create") ? <input type="text" placeholder="Class Name"/> : <></> }
+                    { (this.props.type == "create") ? <input type="text" placeholder="Class Name" onChange={(e) => this.updateTitle(e)}/> : <></> }
+                    { (this.props.type == "create") ? <button onClick={(e) => this.createClass(e)} className="noMargin">Create</button> : <></> }
                 </div>
                 
                 <div className="modalBody">
@@ -127,7 +163,7 @@ class ClassModal extends React.Component {
                     (this.state.add)
                     ?
                     <div className="modalOverlay">
-                        <div className="closeButton" onClick={this.props.onRequestClose}><p>&#10799;</p></div>
+                        <div className="closeButton" onClick={this.addNode}><p>&#10799;</p></div>
                         <h3 style={{  width: '100%', textAlign: 'center' }}>ADD NODE</h3>
 
                         <h4>TITLE</h4>
@@ -135,7 +171,7 @@ class ClassModal extends React.Component {
                         <h4>UNLOCK VALUE</h4>
                         <input type="number" placeholder="0" style={{ width: '100%' }}/>
 
-                        <button>Add Node</button>
+                        <button onClick={this.bindNode}>Add Node</button>
                     </div>
                     :
                     <></>
